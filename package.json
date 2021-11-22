@@ -6,7 +6,8 @@
   "scripts": {
     "test": "test",
     "dev": "nodemon src/index.js",
-    "start": "pm2 start src/index.js"
+    "start": "pm2 start src/index.js",
+    "postinstall": "npx prisma generate && npx prisma migrate deploy && npm run start"
   },
   "author": "Beatriz Medeiros, Brenner Ferreira, Joao Paulo da Silva, Vitoria Bernardino",
   "license": "MIT",
@@ -18,5 +19,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
