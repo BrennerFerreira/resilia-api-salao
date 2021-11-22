@@ -14,5 +14,6 @@ app.listen(PORT, (error) => {
   if (error) {
     console.log(`Error: ${error}`);
   }
+  console.log(process.env);
   console.log(`Server running on port: ${PORT}`);
 });
