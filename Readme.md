@@ -22,10 +22,21 @@ Renomeie o arquivo [.env.example](./.env.example) para `.env` e preencha os
 valores de cada variável com os necessários para conectar com o banco de dados
 instalado localmente. Geralmente, o DB_HOST, neste caso, será `localhost`.
 
-Rode o comando `npm install` para instalar todas as depedências necessárias
-e `npm run start` para rodar o servidor. Teste a API utilizando um software de sua
-preferência acessando `http://localhost:PORT`, sendo `PORT` a variável definida
-no arquivo `.env`.
+Rode o comando `npm install` para instalar todas as depedências necessárias.
+
+Rode os seguintes comandos para sincronizar o Prisma com o banco de dados:
+
+```node
+npx prisma generate
+```
+
+```node
+npx prisma migrate deploy
+```
+
+Por fim, rode `npm run start` para rodar o servidor. Teste a API utilizando um
+software de sua preferência acessando `http://localhost:PORT`, sendo `PORT` a
+variável definida no arquivo `.env`.
 
 #### Utilizando Docker
 
@@ -55,7 +66,19 @@ sh container.sh
 ```
 
 Em seguida, rode o comando `npm install` para instalar todas as depedências
-necessárias e `npm run start` para rodar o servidor. Teste a API utilizando um
+necessárias.
+
+Rode os seguintes comandos para sincronizar o Prisma com o banco de dados:
+
+```node
+npx prisma generate
+```
+
+```node
+npx prisma migrate deploy
+```
+
+Por fim, rode `npm run start` para rodar o servidor. Teste a API utilizando um
 software de sua preferência acessando `http://localhost:PORT`, sendo `PORT` a
 variável definida no arquivo `.env`.
 
