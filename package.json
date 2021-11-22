@@ -7,7 +7,7 @@
     "test": "test",
     "build": "npm install",
     "dev": "nodemon src/index.js",
-    "start": "node src/index.js",
+    "start": "pm2-runtime start ecosystem.config.js --env production",
     "postinstall": "npx prisma generate && npx prisma migrate deploy && npm run start"
   },
   "author": "Beatriz Medeiros, Brenner Ferreira, Joao Paulo da Silva, Vitoria Bernardino",
@@ -15,7 +15,8 @@
   "dependencies": {
     "@prisma/client": "^3.5.0",
     "bcrypt": "^5.0.1",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pm2": "^5.1.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
