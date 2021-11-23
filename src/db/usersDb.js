@@ -26,6 +26,9 @@ class UsersDb {
       return createdUser;
     } catch (error) {
       console.log(error);
+      if (error.code === "P2002") {
+        throw new Error("Duplicated email");
+      }
       return null;
     }
   };

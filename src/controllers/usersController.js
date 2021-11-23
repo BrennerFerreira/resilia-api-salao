@@ -18,17 +18,21 @@ class UsersController {
       return;
     }
 
-    const userCreate = new UserCreate(name, email, password);
-    const userFromDb = await this.db.createUser(userCreate);
-    if (userFromDb) {
-      const user = new UserGet(
-        userFromDb.id,
-        userFromDb.name,
-        userFromDb.email
-      );
-      res.status(201).send(user);
-    } else {
-      res.status(500).send({ error: "Error while trying to create user" });
+    try {
+      const userCreate = new UserCreate(name, email, password);
+      const userFromDb = await this.db.createUser(userCreate);
+      if (userFromDb) {
+        const user = new UserGet(
+          userFromDb.id,
+          userFromDb.name,
+          userFromDb.email
+        );
+        res.status(201).send(user);
+      } else {
+        res.status(500).send({ error: "Error while trying to create user" });
+      }
+    } catch (error) {
+      res.status(409).send({ error: error.message });
     }
   };
 
