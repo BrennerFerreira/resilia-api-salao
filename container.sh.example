@@ -1,0 +1,1 @@
+docker run --name <container-name> -v "<local/folder/to/store/data>":"/var/lib/postgres" -p <container-port>:5432 -d image-postgres
