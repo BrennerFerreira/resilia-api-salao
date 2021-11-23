@@ -24,19 +24,16 @@ instalado localmente. Geralmente, o DB_HOST, neste caso, será `localhost`.
 
 Rode o comando `npm install` para instalar todas as depedências necessárias.
 
-Rode os seguintes comandos para sincronizar o Prisma com o banco de dados:
+Rode o seguinte comando para sincronizar o Prisma com o banco de dados e rodar
+o servidor:
 
 ```node
-npx prisma generate
+npm run deploy
 ```
 
-```node
-npx prisma migrate deploy
-```
-
-Por fim, rode `npm run start` para rodar o servidor. Teste a API utilizando um
-software de sua preferência acessando `http://localhost:PORT`, sendo `PORT` a
-variável definida no arquivo `.env`.
+Teste a API utilizando um software de sua preferência acessando
+`http://localhost:PORT`, sendo `PORT` uma variável definida no arquivo `.env` ou
+a porta 3000, por padrão.
 
 #### Utilizando Docker
 
@@ -50,12 +47,12 @@ seguintes informações:
 
 Renomeie o arquivo `container.sh.example` para `container.sh`, alterando
 `<container-name>` pelo nome que deseja dar ao container,
-`<local/folder/to/store/data>` com um caminho absoluto para uma pasta local
+`<local/folder/to/store/data>` com o caminho absoluto para uma pasta local
 para armazenar os dados do container e `<container-port>` com o mesmo valor
 colocado na variável `DB_PORT` do arquivo `.env`.
 
-Em um terminal (caso utilize Windows, use o Git Bash) aberto na pasta do repositório,
-rode os seguintes comandos:
+Em um terminal (caso utilize Windows, use o Git Bash) aberto na pasta do
+repositório, rode os seguintes comandos:
 
 ```shell
 sh imagem.sh
@@ -68,19 +65,16 @@ sh container.sh
 Em seguida, rode o comando `npm install` para instalar todas as depedências
 necessárias.
 
-Rode os seguintes comandos para sincronizar o Prisma com o banco de dados:
+Rode o seguinte comando para sincronizar o Prisma com o banco de dados e rodar
+o servidor:
 
 ```node
-npx prisma generate
+npm run deploy
 ```
 
-```node
-npx prisma migrate deploy
-```
-
-Por fim, rode `npm run start` para rodar o servidor. Teste a API utilizando um
-software de sua preferência acessando `http://localhost:PORT`, sendo `PORT` a
-variável definida no arquivo `.env`.
+Teste a API utilizando um software de sua preferência acessando
+`http://localhost:PORT`, sendo `PORT` uma variável definida no arquivo `.env` ou
+a porta 3000, por padrão.
 
 ### Online
 
