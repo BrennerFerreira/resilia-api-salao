@@ -1,7 +1,11 @@
+const { Router, json } = require("express");
+
 const usersRouter = require("./usersRouter");
 
-const appRouter = (server) => {
-  usersRouter(server);
-};
+const router = Router();
 
-module.exports = appRouter;
+router.use(json());
+
+router.use("/users", usersRouter);
+
+module.exports = router;

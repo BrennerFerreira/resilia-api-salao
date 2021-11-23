@@ -1,12 +1,10 @@
 const express = require("express");
 
-const appRouter = require("./router/appRouter");
-const configServer = require("./server/config");
+const router = require("./router/appRouter");
 
 const app = express();
 
-configServer(app);
-appRouter(app);
+app.use(router);
 
 app.listen(process.env.PORT || 3000, (error) => {
   if (error) {
