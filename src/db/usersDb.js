@@ -24,7 +24,8 @@ class UsersDb {
       });
 
       return createdUser;
-    } catch (_) {
+    } catch (error) {
+      console.log(error);
       return null;
     }
   };
@@ -43,7 +44,8 @@ class UsersDb {
       });
 
       return user;
-    } catch (_) {
+    } catch (error) {
+      console.log(error);
       return null;
     }
   };
@@ -59,7 +61,8 @@ class UsersDb {
       });
 
       return users;
-    } catch (_) {
+    } catch (error) {
+      console.log(error);
       return null;
     }
   };
