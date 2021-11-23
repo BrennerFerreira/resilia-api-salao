@@ -4,6 +4,7 @@
   "description": "API desenvolvida como projeto final do Modulo 4 do curso de Web Dev da Resilia",
   "main": "src/index.js",
   "scripts": {
+    "db:migrate": "npx prisma migrate dev",
     "test": "test",
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
