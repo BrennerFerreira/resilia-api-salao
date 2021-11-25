@@ -1,10 +1,4 @@
-const express = require("express");
-
-const router = require("./router/appRouter");
-
-const app = express();
-
-app.use(router);
+const app = require("./server/app");
 
 app.listen(process.env.PORT || 3000, (error) => {
   if (error) {
