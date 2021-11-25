@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "db:migrate": "npx prisma migrate dev",
-    "test": "test",
+    "test": "jest",
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
     "install:dev": "npm install && npx prisma generate && npx prisma migrate dev",
@@ -16,6 +16,7 @@
   "dependencies": {
     "@prisma/client": "^3.5.0",
     "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1"
   },
   "devDependencies": {

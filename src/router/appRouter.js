@@ -1,7 +1,13 @@
+const { Router, json } = require("express");
+const cors = require("cors");
+
 const usersRouter = require("./usersRouter");
 
-const appRouter = (server) => {
-  usersRouter(server);
-};
+const router = Router();
 
-module.exports = appRouter;
+router.use(json());
+router.use(cors());
+
+router.use("/users", usersRouter);
+
+module.exports = router;
