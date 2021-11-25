@@ -1,3 +1,4 @@
+const usersDb = require("../db/usersDb");
 const UsersDb = require("../db/usersDb");
 const UserCreate = require("./../models/UserCreate");
 const UserGet = require("./../models/UserGet");
@@ -8,6 +9,7 @@ class UsersController {
   }
 
   create = async (req, res) => {
+    console.log(req);
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
@@ -69,6 +71,20 @@ class UsersController {
         (user) => new UserGet(user.id, user.name, user.email)
       );
       res.send(users);
+    } else {
+      res.status(500).send({ error: "Error while trying to retrieve users" });
+    }
+  };
+
+  update = async (req, res) => {
+    const { id } = req.params;
+    const { name, email, password } = req.body;
+    const user = new UserCreate(name, email, password);
+
+    const updatedUser = await usersDb.updateUser(id, user);
+
+    if (updatedUser) {
+      res.status(204).send();
     } else {
       res.status(500).send({ error: "Error while trying to retrieve users" });
     }

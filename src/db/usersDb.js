@@ -69,6 +69,33 @@ class UsersDb {
       return null;
     }
   };
+
+  updateUser = async (id, user) => {
+    console.log({ user });
+    user.password = user.password
+      ? await bcrypt.hash(user.password, this._saltRounds)
+      : user.password;
+    try {
+      const updatedUser = await db.user.update({
+        where: {
+          id: id,
+        },
+        data: {
+          ...user,
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      });
+
+      return updatedUser;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
 }
 
 module.exports = new UsersDb();
