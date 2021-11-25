@@ -71,7 +71,6 @@ class UsersDb {
   };
 
   updateUser = async (id, user) => {
-    console.log({ user });
     user.password = user.password
       ? await bcrypt.hash(user.password, this._saltRounds)
       : user.password;
@@ -91,6 +90,24 @@ class UsersDb {
       });
 
       return updatedUser;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  removeUser = async (id) => {
+    try {
+      const removedId = await db.user.delete({
+        where: {
+          id: id,
+        },
+        select: {
+          id: true,
+        },
+      });
+
+      return removedId;
     } catch (error) {
       console.log(error);
       return null;

@@ -89,6 +89,18 @@ class UsersController {
       res.status(500).send({ error: "Error while trying to retrieve users" });
     }
   };
+
+  remove = async (req, res) => {
+    const { id } = req.params;
+
+    const removedId = await usersDb.removeUser(id);
+
+    if (removedId) {
+      res.status(204).send();
+    } else {
+      res.status(500).send({ error: "Error while trying to retrieve users" });
+    }
+  };
 }
 
 module.exports = new UsersController(UsersDb);
