@@ -15,4 +15,12 @@ model User {
   name     String
   email    String @unique
   password String
+  schedules Scheduling[] 
+}
+
+model Scheduling {
+  id     String @id @default(uuid())
+  userId String
+  user   User @relation(fields:[userId], references:[id])
+  data   DateTime
 }
