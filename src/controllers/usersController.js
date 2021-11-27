@@ -1,7 +1,7 @@
 const usersDb = require("../db/usersDb");
 const UsersDb = require("../db/usersDb");
-const UserCreate = require("./../models/UserCreate");
-const UserGet = require("./../models/UserGet");
+const UserWithoutId = require("./../models/UserWithoutId");
+const UserWithoutPassword = require("./../models/UserWithoutPassword");
 
 class UsersController {
   constructor(db) {
@@ -21,10 +21,10 @@ class UsersController {
     }
 
     try {
-      const userCreate = new UserCreate(name, email, password);
-      const userFromDb = await this.db.createUser(userCreate);
+      const userWithoutId = new UserWithoutId(name, email, password);
+      const userFromDb = await this.db.createUser(userWithoutId);
       if (userFromDb) {
-        const user = new UserGet(
+        const user = new UserWithoutPassword(
           userFromDb.id,
           userFromDb.name,
           userFromDb.email
@@ -52,7 +52,7 @@ class UsersController {
     const userFromDb = await this.db.findUser(id);
 
     if (userFromDb) {
-      const user = new UserGet(
+      const user = new UserWithoutPassword(
         userFromDb.id,
         userFromDb.name,
         userFromDb.email
@@ -68,7 +68,7 @@ class UsersController {
 
     if (usersFromDb) {
       const users = usersFromDb.map(
-        (user) => new UserGet(user.id, user.name, user.email)
+        (user) => new UserWithoutPassword(user.id, user.name, user.email)
       );
       res.send(users);
     } else {
@@ -79,7 +79,7 @@ class UsersController {
   update = async (req, res) => {
     const { id } = req.params;
     const { name, email, password } = req.body;
-    const user = new UserCreate(name, email, password);
+    const user = new UserWithoutId(name, email, password);
 
     const updatedUser = await usersDb.updateUser(id, user);
 
