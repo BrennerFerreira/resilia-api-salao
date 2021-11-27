@@ -1,4 +1,4 @@
-class UserCreate {
+class UserWithoutId {
   constructor(name, email, password) {
     this.name = name;
     this.email = email;
@@ -6,4 +6,4 @@ class UserCreate {
   }
 }
 
-module.exports = UserCreate;
+module.exports = UserWithoutId;

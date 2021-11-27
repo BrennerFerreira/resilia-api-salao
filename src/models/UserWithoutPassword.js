@@ -1,4 +1,4 @@
-class UserGet {
+class UserWithoutPassword {
   constructor(id, name, email) {
     this.id = id;
     this.name = name;
@@ -6,4 +6,4 @@ class UserGet {
   }
 }
 
-module.exports = UserGet;
+module.exports = UserWithoutPassword;
