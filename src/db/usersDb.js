@@ -26,6 +26,9 @@ class UsersDb {
       return createdUser;
     } catch (error) {
       console.log(error);
+      if (error.code === "P2002") {
+        throw new Error("Duplicated email");
+      }
       return null;
     }
   };
@@ -61,6 +64,50 @@ class UsersDb {
       });
 
       return users;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  updateUser = async (id, user) => {
+    user.password = user.password
+      ? await bcrypt.hash(user.password, this._saltRounds)
+      : user.password;
+    try {
+      const updatedUser = await db.user.update({
+        where: {
+          id: id,
+        },
+        data: {
+          ...user,
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      });
+
+      return updatedUser;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  removeUser = async (id) => {
+    try {
+      const removedId = await db.user.delete({
+        where: {
+          id: id,
+        },
+        select: {
+          id: true,
+        },
+      });
+
+      return removedId;
     } catch (error) {
       console.log(error);
       return null;
