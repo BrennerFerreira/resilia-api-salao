@@ -1,18 +1,17 @@
 const db = require('./db')
 class ScheduleDb {
-    constructor(db){
-        this.db = db
-    }
-    createSchedule = (schedule) => {
+    createSchedule =  async (schedule) => {
         const {userId, data} = schedule
-        db.schedules.create({
+        try {
+        const create = await db.scheduling.create({
             data:{userId, data}
-        }).then((schedule)=> {
-            return schedule
-        }).catch((erro) => {
-            console.log(erro)
-            return null
         })
+            console.log(create)
+            return create
+    } catch(erro){
+        console.log(erro)
+        return null
     }
 }
-module.exports = new ScheduleDb(db)
+}
+module.exports = new ScheduleDb()
