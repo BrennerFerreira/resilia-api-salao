@@ -1,7 +1,8 @@
 -- CreateTable
 CREATE TABLE "Services" (
-    "employeeId" TEXT NOT NULL,
-    "serviceId" TEXT NOT NULL,
-    "price" DECIMAL NOT NULL,
+    "id" TEXT NOT NULL,
+    "employeeName" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "price" DECIMAL(65,30) NOT NULL,
 
     CONSTRAINT "Services_pkey" PRIMARY KEY ("id")
