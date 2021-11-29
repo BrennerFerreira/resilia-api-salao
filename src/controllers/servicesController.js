@@ -4,8 +4,8 @@ class ServicesController {
         this.db = db
     }
     createServices = async (req, res) => {
-        const {employeeId} = req.body
-        const services = new model(employeeId, price)
+        const {employeeName} = req.body
+        const services = new model(employeeName, price)
         const create = await db.createServices(services)
             console.log(create)
             if(create){

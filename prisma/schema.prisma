@@ -18,7 +18,8 @@ model User {
 }
 
 model Services {
-  employeeId String
-  serviceId String
+  id String @id @default(uuid())
+  employeeName String
+  serviceName String @unique
   price Decimal
 }

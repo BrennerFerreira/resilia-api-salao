@@ -1,10 +1,10 @@
 const db = require('./db')
 class ServicesDb {
     createSchedule =  async (services) => {
-        const {employeeId, serviceId, price} = services
+        const {id, employeeName, serviceName, price} = services
         try {
         const create = await db.services.create({
-            data:{employeeId, serviceId, price}
+            data:{id, employeeName, serviceName, price}
         })
             console.log(create)
             return create

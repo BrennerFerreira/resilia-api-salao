@@ -1,7 +1,8 @@
 class Services {
-    constructor(employeeId, serviceId, price) {
-      this.employeeId = employeeId
-      this.serviceId = serviceId
+    constructor(id, employeeName, serviceName, price) {
+      this.id = id
+      this.employeeName = employeeName
+      this.serviceName = serviceName
       this.price = price
     }
   }
