@@ -1,8 +1,8 @@
 class Services {
-    constructor(id, employeeName, serviceName, price) {
+    constructor(id, employeeName, name, price) {
       this.id = id
       this.employeeName = employeeName
-      this.serviceName = serviceName
+      this.name = name
       this.price = price
     }
   }

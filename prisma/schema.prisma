@@ -20,6 +20,6 @@ model User {
 model Services {
   id String @id @default(uuid())
   employeeName String
-  serviceName String @unique
+  name String @unique
   price Decimal
 }
