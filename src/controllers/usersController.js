@@ -1,4 +1,3 @@
-const usersDb = require("../db/usersDb");
 const UsersDb = require("../db/usersDb");
 const UserWithoutId = require("./../models/UserWithoutId");
 const UserWithoutPassword = require("./../models/UserWithoutPassword");
