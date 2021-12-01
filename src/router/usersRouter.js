@@ -1,9 +1,12 @@
 const UsersController = require("./../controllers/usersController");
+const { Router } = require("express");
 
-const usersRouter = (server) => {
-  server.post("/users", UsersController.create);
-  server.get("/users/:id", UsersController.findUser);
-  server.get("/users", UsersController.findAll);
-};
+const router = Router();
 
-module.exports = usersRouter;
+router.post("/", UsersController.create);
+router.get("/:id", UsersController.findUser);
+router.get("/", UsersController.findAll);
+router.patch("/:id", UsersController.update);
+router.delete("/:id", UsersController.remove);
+
+module.exports = router;
