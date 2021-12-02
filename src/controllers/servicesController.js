@@ -1,4 +1,4 @@
-const db = require('../db/servicesDb')
+const db = require('../db/servicesDb');
 const ServicesWithoutId = require('../models/ServicesWithoutId')
 class ServicesController {
     constructor(db){
@@ -13,7 +13,7 @@ class ServicesController {
                 res.status(201).send(create)
             }
             else{
-                res.status(500).send("Não foi possível criar o serviço")
+                res.status(500).send("Não foi possível criar o serviço.")
             }
     }
     findServices = async (req, res) => {
@@ -23,19 +23,15 @@ class ServicesController {
             res.send(find)
         }
         else{
-            res.status(404).send("Não foi possível encontrar o serviço")
+            res.status(404).send("Não foi possível encontrar o serviço.")
         }
     }
     findAll = async (req, res) => {
         const servicesFromDb = await this.db.findAll();
-
         if (servicesFromDb) {
-          const services = servicesFromDb.map(
-        (services) => new ServicesWithoutId(services.id, services.employeeName, services.name, services.price)
-      );
-          res.send(services);
+          res.send(servicesFromDb);
         } else {
-          res.status(500).send("Não foi possível localizar o serviço");
+          res.status(500).send("Não foi possível localizar o serviço.");
         }
     }
     updateServices = async (req, res) => {
@@ -47,7 +43,16 @@ class ServicesController {
             res.send(update)
         }
         else{
-            res.status(500).send("Não foi possível atualizar")
+            res.status(500).send("Não foi possível atualizar.")
+        }
+    }
+    removeServices = async (req, res) => {
+        const {id} = req.params;
+        const removedId = await this.db.removeServices(id)
+        if (removedId) {
+          res.status(204).send();
+        } else {
+          res.status(500).send("Não foi possível remover o serviço");
         }
     }
 }

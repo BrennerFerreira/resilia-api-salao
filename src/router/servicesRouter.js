@@ -7,6 +7,6 @@ router.post("/", ServicesController.createServices);
 router.get("/:id", ServicesController.findServices);
 router.get("/", ServicesController.findAll);
 router.patch("/:id", ServicesController.updateServices);
-// router.delete("/:id", ServicesController.remove);
+router.delete("/:id", ServicesController.removeServices);
 
 module.exports = router;
