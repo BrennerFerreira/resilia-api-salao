@@ -25,6 +25,18 @@ class ServicesDb {
         return null
     }
 }
+    findAll = async () => {
+        try {
+          const services = await db.services.findMany({
+          });
+    
+          return services;
+        } catch (error) {
+          console.log(error);
+          return null;
+        }
+      }
+}
 updateServices = async (id, services) => {
     try {
       const updatedServices = await db.services.update({
@@ -41,6 +53,5 @@ updateServices = async (id, services) => {
       console.log(error);
       return null;
     }
-  };
-}
+  }
 module.exports = new ServicesDb()

@@ -13,7 +13,7 @@ class ServicesController {
                 res.status(201).send(create)
             }
             else{
-                res.status(500).send("Erro!")
+                res.status(500).send("Não foi possível criar o serviço")
             }
     }
     findServices = async (req, res) => {
@@ -24,6 +24,18 @@ class ServicesController {
         }
         else{
             res.status(404).send("Não foi possível encontrar o serviço")
+        }
+    }
+    findAll = async (req, res) => {
+        const servicesFromDb = await this.db.findAll();
+
+        if (servicesFromDb) {
+          const services = servicesFromDb.map(
+        (services) => new ServicesWithoutId(services.id, services.employeeName, services.name, services.price)
+      );
+          res.send(services);
+        } else {
+          res.status(500).send("Não foi possível localizar o serviço");
         }
     }
     updateServices = async (req, res) => {
