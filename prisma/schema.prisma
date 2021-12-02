@@ -17,8 +17,16 @@ model User {
   password String
 }
 
+model Services {
+  id String @id @default(uuid())
+  employeeName String
+  name String 
+  price Decimal
+}
+
 model Produtos {
  id       String @id @default(uuid())
   name     String
   preco  Decimal
 }
+
