@@ -33,7 +33,7 @@ findProduct = async (req, res) => {
     const productFromDb = await this.db.findProduct(id);
 
     if (productFromDb) {
-      const product = new ProductGet(
+      const product = new Produtos(
         productFromDb.id,
         productFromDb.name,
         productFromDb.preco
@@ -49,7 +49,7 @@ findProduct = async (req, res) => {
 
     if (productFromDb) {
       const product = productFromDb.map(
-        (product) => new UserGet(product.id, product.name, product.preco)
+        (product) => new Produtos(product.id, product.name, product.preco)
       );
       res.send(product);
     } else {
@@ -60,9 +60,9 @@ findProduct = async (req, res) => {
   update = async (req, res) => {
     const { id } = req.params;
     const { name, preco } = req.body;
-    const product = new ProductCreate(name, preco);
+    const product = new ProdutosSemID(name, preco);
 
-    const updatedProduct = await productsDb.updateProduct(id, product);
+    const updatedProduct = await this.db.updateProduto(id, product);
 
     if (updatedProduct) {
       res.status(204).send();
@@ -74,7 +74,7 @@ findProduct = async (req, res) => {
   remove = async (req, res) => {
     const { id } = req.params;
 
-    const removedId = await ProductsDb.removeProduct(id);
+    const removedId = await this.db.removeProduct(id);
 
     if (removedId) {
       res.status(204).send();
