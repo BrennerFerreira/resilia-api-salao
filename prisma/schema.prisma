@@ -23,3 +23,10 @@ model Services {
   name String 
   price Decimal
 }
+
+model Produtos {
+ id       String @id @default(uuid())
+  name     String
+  preco  Decimal
+}
+
