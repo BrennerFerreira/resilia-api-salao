@@ -4,6 +4,16 @@ class ScheduleController {
     constructor(db){
         this.db = db
     }
+    findSchedule = async (req, res) => {
+        const {id} = req.params
+        const find = await db.findSchedule(id)
+        if (find) {
+            res.send(find)
+        }
+        else {
+            res.status(404).send("Não foi possível encontrar o agendamento")
+        }
+    }
     createSchedule = async (req, res) => {
         const {userId} = req.body
         let data = new Date()
