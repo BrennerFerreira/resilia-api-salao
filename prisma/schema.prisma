@@ -16,3 +16,9 @@ model User {
   email    String @unique
   password String
 }
+
+model Produtos {
+ id       String @id @default(uuid())
+  name     String
+  preco  Decimal
+}
