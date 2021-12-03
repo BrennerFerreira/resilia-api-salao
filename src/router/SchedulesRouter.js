@@ -5,7 +5,7 @@ const router = Router();
 
 router.post("/", scheduleController.createSchedule);
 router.get("/:id", scheduleController.findSchedule);
-// router.get("/", scheduleController.findAll);
+router.get("/", scheduleController.findAll);
 // router.patch("/:id", scheduleController.update);
 // router.delete("/:id", scheduleController.remove);
 

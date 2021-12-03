@@ -4,6 +4,14 @@ class ScheduleController {
     constructor(db){
         this.db = db
     }
+    findAll = async (req, res) => {
+        const findAll = await this.db.findAll();
+        if (findAll) {
+          res.send(findAll);
+        } else {
+          res.status(500).send({ error: "Erro tentando buscar todos os usuarios" });
+        }
+      };
     findSchedule = async (req, res) => {
         const {id} = req.params
         const find = await db.findSchedule(id)

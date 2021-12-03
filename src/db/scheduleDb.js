@@ -1,5 +1,15 @@
 const db = require('./db')
 class ScheduleDb {
+    findAll = async () => {
+        try {
+          const agendamentos = await db.user.findMany({
+          });
+          return agendamentos;
+        } catch (error) {
+          console.log(error);
+          return null;
+        }
+      };
     findSchedule = async (id) => {
         try {
             const find = await db.scheduling.findUnique({
