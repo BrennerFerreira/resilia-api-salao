@@ -4,6 +4,16 @@ class ScheduleController {
     constructor(db){
         this.db = db
     }
+    deleteSchedule = async (req, res) => {
+        const {id} = req.params
+        const deleteSchedule = await this.db.deleteSchedule(id);
+        if(deleteSchedule) {
+            res.status(204).send()
+        }
+        else {
+            res.status(500).send({error: "Erro tentando deletar usuario"})
+        }
+    }
     updateSchedule = async (req, res) => {
         const {id} = req.params
         const {userId} = req.body
