@@ -4,6 +4,17 @@ class ScheduleController {
     constructor(db){
         this.db = db
     }
+    updateSchedule = async (req, res) => {
+        const {id} = req.params
+        const {userId} = req.body
+        const updateSchedule = await this.db.updateSchedule(id, userId);
+        if(updateSchedule) {
+            res.status(204).send()
+        }
+        else {
+            res.status(500).send({error: "Erro tentando atualizar usuario"})
+        }
+    }
     findAll = async (req, res) => {
         const findAll = await this.db.findAll();
         if (findAll) {

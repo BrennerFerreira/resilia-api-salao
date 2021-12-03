@@ -1,8 +1,23 @@
 const db = require('./db')
 class ScheduleDb {
+    updateSchedule = async (id, userId) => {
+        try {
+            const  agendamentos = await db.scheduling.update({
+                where: {
+                    id:id
+                },
+                data:{userId}
+            })
+            return agendamentos
+        }
+        catch(erro) {
+            console.log(erro)
+            return null
+        }
+    }
     findAll = async () => {
         try {
-          const agendamentos = await db.user.findMany({
+          const agendamentos = await db.scheduling.findMany({
           });
           return agendamentos;
         } catch (error) {
