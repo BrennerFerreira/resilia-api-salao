@@ -15,6 +15,7 @@ model User {
   name     String
   email    String @unique
   password String
+  schedules Scheduling[] 
 }
 
 model Services {
@@ -28,5 +29,13 @@ model Produtos {
  id       String @id @default(uuid())
   name     String
   preco  Decimal
+}
+
+
+model Scheduling {
+  id     String @id @default(uuid())
+  userId String
+  user   User @relation(fields:[userId], references:[id])
+  data   DateTime
 }
 
