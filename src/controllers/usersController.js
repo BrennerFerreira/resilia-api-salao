@@ -1,6 +1,5 @@
 const UsersDb = require("../db/usersDb");
 const UserWithoutId = require("./../models/UserWithoutId");
-const UserWithoutPassword = require("./../models/UserWithoutPassword");
 
 class UsersController {
   constructor(db) {
@@ -8,27 +7,21 @@ class UsersController {
   }
 
   create = async (req, res) => {
-    console.log(req);
-    const { name, email, password } = req.body;
+    const { name, email } = req.body;
 
-    if (!name || !email || !password) {
+    if (!name || !email) {
       res.status(400).send({
-        error: "Missing required argument (must have name, email and password)",
+        error: "Missing required argument (must have name and email)",
       });
 
       return;
     }
 
     try {
-      const userWithoutId = new UserWithoutId(name, email, password);
+      const userWithoutId = new UserWithoutId(name, email);
       const userFromDb = await this.db.createUser(userWithoutId);
       if (userFromDb) {
-        const user = new UserWithoutPassword(
-          userFromDb.id,
-          userFromDb.name,
-          userFromDb.email
-        );
-        res.status(201).send(user);
+        res.status(201).send(userFromDb);
       } else {
         res.status(500).send({ error: "Error while trying to create user" });
       }
