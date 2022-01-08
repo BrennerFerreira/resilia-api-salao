@@ -1,61 +1,62 @@
-const db = require('../db/scheduleDb')
-const model = require('../models/ScheduleWithoutId')
+const db = require("../db/scheduleDb");
+const ScheduleWithoutId = require("../models/ScheduleWithoutId");
+const model = require("../models/ScheduleWithoutId");
 class ScheduleController {
-    constructor(db){
-        this.db = db
+  constructor(db) {
+    this.db = db;
+  }
+
+  deleteSchedule = async (req, res) => {
+    const { id } = req.params;
+    const deleteSchedule = await this.db.deleteSchedule(id);
+    if (deleteSchedule) {
+      res.status(204).send();
+    } else {
+      res.status(500).send({ error: "Erro tentando deletar usuario" });
     }
-    deleteSchedule = async (req, res) => {
-        const {id} = req.params
-        const deleteSchedule = await this.db.deleteSchedule(id);
-        if(deleteSchedule) {
-            res.status(204).send()
-        }
-        else {
-            res.status(500).send({error: "Erro tentando deletar usuario"})
-        }
+  };
+
+  updateSchedule = async (req, res) => {
+    const { id } = req.params;
+    const { userId, serviceId, data } = req.body;
+    const schedule = new ScheduleWithoutId(userId, data, serviceId);
+    const updateSchedule = await this.db.updateSchedule(id, schedule);
+    if (updateSchedule) {
+      res.status(204).send();
+    } else {
+      res.status(500).send({ error: "Erro tentando atualizar usuario" });
     }
-    updateSchedule = async (req, res) => {
-        const {id} = req.params
-        const {userId} = req.body
-        const updateSchedule = await this.db.updateSchedule(id, userId);
-        if(updateSchedule) {
-            res.status(204).send()
-        }
-        else {
-            res.status(500).send({error: "Erro tentando atualizar usuario"})
-        }
+  };
+
+  findAll = async (req, res) => {
+    const findAll = await this.db.findAll();
+    if (findAll) {
+      res.send(findAll);
+    } else {
+      res.status(500).send({ error: "Erro tentando buscar todos os usuarios" });
     }
-    findAll = async (req, res) => {
-        const findAll = await this.db.findAll();
-        if (findAll) {
-          res.send(findAll);
-        } else {
-          res.status(500).send({ error: "Erro tentando buscar todos os usuarios" });
-        }
-      };
-    findSchedule = async (req, res) => {
-        const {id} = req.params
-        const find = await db.findSchedule(id)
-        if (find) {
-            res.send(find)
-        }
-        else {
-            res.status(404).send("Não foi possível encontrar o agendamento")
-        }
+  };
+
+  findSchedule = async (req, res) => {
+    const { id } = req.params;
+    const find = await db.findSchedule(id);
+    if (find) {
+      res.send(find);
+    } else {
+      res.status(404).send("Não foi possível encontrar o agendamento");
     }
-    createSchedule = async (req, res) => {
-        const {userId} = req.body
-        let data = new Date()
-        data.setDate(data.getDate() + 7)
-        const schedule = new model(userId, data)
-        const create = await db.createSchedule(schedule)
-            console.log(create)
-            if(create){
-                res.status(201).send(create)
-            }
-            else{
-                res.status(500).send("Deu Erro")
-            }
+  };
+
+  createSchedule = async (req, res) => {
+    const { userId, data, serviceId } = req.body;
+    const schedule = new model(userId, data, serviceId);
+    const create = await db.createSchedule(schedule);
+    if (create) {
+      res.status(201).send(create);
+    } else {
+      res.status(500).send("Deu Erro");
     }
+  };
 }
-module.exports = new ScheduleController(db)
+
+module.exports = new ScheduleController(db);

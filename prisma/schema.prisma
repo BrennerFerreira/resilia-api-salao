@@ -11,31 +11,31 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
-  name     String
-  email    String @unique
-  password String
-  schedules Scheduling[] 
+  id        String       @id @default(uuid())
+  name      String
+  email     String       @unique
+  schedules Scheduling[]
 }
 
 model Services {
-  id String @id @default(uuid())
+  id           String       @id @default(uuid())
   employeeName String
-  name String 
-  price Decimal
+  name         String
+  price        Decimal
+  schedules    Scheduling[]
 }
 
 model Produtos {
- id       String @id @default(uuid())
-  name     String
-  preco  Decimal
+  id    String  @id @default(uuid())
+  name  String
+  preco Decimal
 }
-
 
 model Scheduling {
-  id     String @id @default(uuid())
-  userId String
-  user   User @relation(fields:[userId], references:[id])
-  data   DateTime
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  serviceId String
+  service   Services @relation(fields: [serviceId], references: [id])
+  data      DateTime
 }
-

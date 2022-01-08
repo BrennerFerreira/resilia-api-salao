@@ -1,8 +1,9 @@
 class ScheduleWithoutId {
-    constructor(userId, data) {
-      this.userId = userId
-      this.data = data
-    }
+  constructor(userId, data, serviceId) {
+    this.userId = userId;
+    this.data = data;
+    this.serviceId = serviceId;
   }
-  
-  module.exports = ScheduleWithoutId;
+}
+
+module.exports = ScheduleWithoutId;
