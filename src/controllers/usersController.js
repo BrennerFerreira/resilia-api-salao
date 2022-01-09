@@ -44,12 +44,7 @@ class UsersController {
     const userFromDb = await this.db.findUser(id);
 
     if (userFromDb) {
-      const user = new UserWithoutPassword(
-        userFromDb.id,
-        userFromDb.name,
-        userFromDb.email
-      );
-      res.send(user);
+      res.send(userFromDb);
     } else {
       res.status(404).send();
     }
@@ -59,10 +54,7 @@ class UsersController {
     const usersFromDb = await this.db.findAll();
 
     if (usersFromDb) {
-      const users = usersFromDb.map(
-        (user) => new UserWithoutPassword(user.id, user.name, user.email)
-      );
-      res.send(users);
+      res.send(usersFromDb);
     } else {
       res.status(500).send({ error: "Error while trying to retrieve users" });
     }
