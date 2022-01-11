@@ -45,8 +45,8 @@ class ScheduleDb {
               name: true,
             },
           },
+          data: true,
         },
-        data: true,
       });
       return agendamentos;
     } catch (error) {
