@@ -65,7 +65,7 @@ class UsersController {
     const { name, email, password } = req.body;
     const user = new UserWithoutId(name, email, password);
 
-    const updatedUser = await usersDb.updateUser(id, user);
+    const updatedUser = await this.db.updateUser(id, user);
 
     if (updatedUser) {
       res.status(204).send();
@@ -77,7 +77,7 @@ class UsersController {
   remove = async (req, res) => {
     const { id } = req.params;
 
-    const removedId = await usersDb.removeUser(id);
+    const removedId = await this.db.removeUser(id);
 
     if (removedId) {
       res.status(204).send();
