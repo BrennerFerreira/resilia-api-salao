@@ -65,6 +65,20 @@ class UsersDb {
 
   removeUser = async (id) => {
     try {
+      const numberOfSchedules = await db.scheduling.count({
+        where: {
+          userId: id,
+        },
+      });
+
+      if (numberOfSchedules) {
+        await db.scheduling.deleteMany({
+          where: {
+            userId: id,
+          },
+        });
+      }
+
       const removedId = await db.user.delete({
         where: {
           id: id,
@@ -73,6 +87,7 @@ class UsersDb {
 
       return removedId;
     } catch (error) {
+      console.log(error);
       return null;
     }
   };
